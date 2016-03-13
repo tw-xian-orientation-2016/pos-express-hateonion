@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>receiptList</title>
-    <link rel="stylesheet" href="css/receiptList.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/receiptList.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
@@ -18,6 +18,14 @@
                   <th>查看清单</th>
                   <th>删除清单</th>
               </tr>
+              {% for receipt in receiptList %}
+              <tr>
+                <td>time</td>
+                <td>{{receipt.total}}元</td>
+                <td><button name="getReceipt" data-timeStamp={{receipt.time}} class="btn btn-info glyphicon glyphicon-gift checkout"></button></td>
+                <td><button name="deleteReceipt" data-timeStamp={{receipt.time}} class="btn btn-warning glyphicon glyphicon-remove delete"></button></td>
+              </tr>
+              {% endfor %}
           </table>
       </div>
     </div>
@@ -27,8 +35,8 @@
         </div>
     </nav>
   </div>
-    <script src="js/lib/jquery-2.2.1.min.js"></script>
-    <script src="js/src/localStorageOperation.js"></script>
-    <script src="js/src/receiptList.js"></script>
+    <script src="javascripts/lib/jquery-2.2.1.min.js"></script>
+    <script src="javascripts/src/localStorageOperation.js"></script>
+    <script src="javascripts/src/receiptList.js"></script>
 </body>
 </html>
