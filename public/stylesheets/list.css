@@ -1,0 +1,20 @@
+#shopTitle {
+    border-radius: 10px;
+}
+
+button.headerButton {
+    font-size: 20px;
+    width: 100px;
+}
+
+.shouNumber {
+    display: inline-block;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+#detail {
+    font-size: 20px;
+}

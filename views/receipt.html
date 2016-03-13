@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>receipt</title>
+    <link rel="stylesheet" href="css/receipt.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 center-block text-center">
+          <h1 id="logo">没钱赚商店</h1>
+          <h2><small>购物清单</small></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div id="time">
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div id="operator"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table table-borded table-hover" id="receipt">
+          <tr>
+            <th>名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <div id="total"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <div id="totalMoney"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <button id="back" name="back" class="btn btn-default pull-right">返回</button>
+      </div>
+    </div>
+  </div>
+    <script src="js/lib/jquery-2.2.1.min.js"></script>
+    <script src="js/src/localStorageOperation.js"></script>
+    <script src="js/src/fixture.js"></script>
+    <script src="js/src/receipt.js"></script>
+</body>
+</html>

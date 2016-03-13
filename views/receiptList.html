@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>receiptList</title>
+    <link rel="stylesheet" href="css/receiptList.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+          <h1 class="text-center bg-primary" id="logo">您的购物历史记录</h1>
+          <table class="table table-borded table-hover" id="receiptList">
+              <tr>
+                  <th>生成时间</th>
+                  <th>总价</th>
+                  <th>查看清单</th>
+                  <th>删除清单</th>
+              </tr>
+          </table>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <button name="back" class="pull-right btn btn-default navbar-btn">返回</button>
+        </div>
+    </nav>
+  </div>
+    <script src="js/lib/jquery-2.2.1.min.js"></script>
+    <script src="js/src/localStorageOperation.js"></script>
+    <script src="js/src/receiptList.js"></script>
+</body>
+</html>

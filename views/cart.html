@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+          <h1 id="cartTitle" class="text-center bg-primary">您的购物车</h1>
+          <table class="table table-borded table-hover" id="cart">
+              <tr>
+                  <th>名称</th>
+                  <th>单价</th>
+                  <th>数量</th>
+                  <th>小计</th>
+                  <th>修改数量</th>
+                  <th>删除商品</th>
+              </tr>
+          </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-1 pull-right" id="cartButton">
+        <button name="checkout" class="btn btn-default">结算</button>
+        <button name="back" class="btn btn-default">返回</button>
+      </div>
+    </div>
+  </div>
+    <script src="js/lib/jquery-2.2.1.min.js"></script>
+    <script src="js/src/localStorageOperation.js"></script>
+    <script src="js/src/cart.js"></script>
+</body>
+</html>
