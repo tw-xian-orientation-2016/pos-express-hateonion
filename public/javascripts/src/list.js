@@ -3,21 +3,13 @@ $(document).ready(function() {
 });
 
 function init(){
+  var productInfo = getProductInfo();
+  var cart = getCart();
+  var receiptList = getReceiptList();
 
-  $.get('/api/getProductInfo', function(data){
-    var items = data.items;
-    printDetail(items);
-  }, 'json');
-
-  $.get('/api/getReceiptList', function(data){
-    var receiptList = data;
-    updateReceiptNumber(receiptList);
-  }, 'json');
-
-  $.get('/api/getCart', function (data) {
-    var cart = data;
-    updateCartNumber(cart);
-  }, 'json');
+  printDetail(productInfo);
+  updateCartNumber(cart);
+  updateReceiptNumber(receiptList);
 
 }
 

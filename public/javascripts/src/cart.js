@@ -1,23 +1,35 @@
-function generateCart() {
-  var items = getLocalStorage("items");
-  var carts = getLocalStorage("carts");
+$(document).ready(function() {
+  generateCart();
+  // deleteButtonClick();
+  // updateNumber();
+  // checkOutClick();
+  // backButtonClick();
+});
 
-  carts.forEach(function(cart) {
-    items.forEach(function(item) {
-      if(cart.id === item.id) {
-        var htmlContext = "";
-        htmlContext += "<tr>";
-        htmlContext += "<td>" + item.name + "</td>";
-        htmlContext += "<td id='price'>" + item.price + "元/" + item.unit + "</td>";
-        htmlContext += "<td id='count'>" + cart.count + "</td>";
-        htmlContext += "<td id='subtotal'>" + item.price * cart.count + "元</td>";
-        htmlContext += "<td>" + "<input type='text' name='numberInput'" + "data-itemId=" + item.id +  "></td>";
-        htmlContext += "<td>" + "<button name='deleteButton' " + "data-itemId=" + item.id + " class='btn btn-default glyphicon glyphicon-remove pull-left'>" + "</button>" + "</td>";
-        htmlContext += "</tr>";
-        $("table").append(htmlContext);
-      }
-    });
-  });
+function generateCart() {
+  $.get('/api/getProductInfo', function(data){
+    var items = data;
+    $.get('/api/getProductInfo', function(data){
+      var cart = data;
+
+      cart.forEach(function(cartitem) {
+        items.forEach(function(item) {
+          if(cartitem.id === item.id) {
+            var htmlContext = "";
+            htmlContext += "<tr>";
+            htmlContext += "<td>" + item.name + "</td>";
+            htmlContext += "<td id='price'>" + item.price + "元/" + item.unit + "</td>";
+            htmlContext += "<td id='count'>" + cartitem.count + "</td>";
+            htmlContext += "<td id='subtotal'>" + item.price * cartitem.count + "元</td>";
+            htmlContext += "<td>" + "<input type='text' name='numberInput'" + "data-itemId=" + item.id +  "></td>";
+            htmlContext += "<td>" + "<button name='deleteButton' " + "data-itemId=" + item.id + " class='btn btn-default glyphicon glyphicon-remove pull-left'>" + "</button>" + "</td>";
+            htmlContext += "</tr>";
+            $("table").append(htmlContext);
+          }
+        });
+      });
+    }, 'json');
+  }, 'json');
 }
 
 
