@@ -18,6 +18,7 @@ let app = express();
 let swig = require('swig');
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', swig.renderFile);
+// app.set('view engine', 'jade');
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
@@ -30,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', list);
 app.use('/cart', cart);
-app.use('/receipt', receipt);
-app.use('/receiptList', receiptList);
+// app.use('/receipt', receipt);
+// app.use('/receiptList', receiptList);
 
 
 // catch 404 and forward to error handler

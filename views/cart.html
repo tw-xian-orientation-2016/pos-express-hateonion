@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>cart</title>
-    <link rel="stylesheet" href="css/cart.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
+    <link rel="stylesheet" href="stylesheets/cart.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
           <h1 id="cartTitle" class="text-center bg-primary">您的购物车</h1>
           <table class="table table-borded table-hover" id="cart">
-              <tr>
-                  <th>名称</th>
-                  <th>单价</th>
-                  <th>数量</th>
-                  <th>小计</th>
-                  <th>修改数量</th>
-                  <th>删除商品</th>
-              </tr>
+            <tr>
+              <th>名称</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>小计</th>
+              <th>修改数量</th>
+              <th>删除商品</th>
+            </tr>
+            {% for cartItem in cart %}
+              {% for item in items %}
+                {% if item.id == cartItem.id %}
+                  <tr>
+                    <td>{{item.name}}</td>
+                    <td id="price">{{item.price}}元/{{item.unit}}</td>
+                    <td id="count">{{cartItem.count}}</td>
+                    <td id="subtotal">{{item.price * cartItem.count}}元</td>
+                    <td><input type="text" name="numberInput" data-itemId={{item.id}}></td>
+                    <td><button name="deleteButton" data-itemId={{item.id}} class="btn btn-default glyphicon glyphicon-remove pull-left"></button></td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
           </table>
       </div>
     </div>
@@ -30,8 +44,8 @@
       </div>
     </div>
   </div>
-    <script src="js/lib/jquery-2.2.1.min.js"></script>
-    <script src="js/src/localStorageOperation.js"></script>
-    <script src="js/src/cart.js"></script>
+    <script src="javascripts/lib/jquery-2.2.1.min.js"></script>
+    <script src="javascripts/src/localStorageOperation.js"></script>
+    <script src="javascripts/src/cart.js"></script>
 </body>
 </html>
