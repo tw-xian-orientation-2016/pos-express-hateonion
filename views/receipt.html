@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>receipt</title>
-    <link rel="stylesheet" href="css/receipt.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/receipt.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
@@ -32,6 +32,18 @@
             <th>数量</th>
             <th>小计</th>
           </tr>
+          {% for cartItem in cart %}
+          {% for item in items %}
+          {% if cartItem.id == item.id %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{cartItem.count}}{{item.unit}}</td>
+            <td>{{item.price * cartItem.count}}元</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
         </table>
       </div>
     </div>
@@ -51,9 +63,9 @@
       </div>
     </div>
   </div>
-    <script src="js/lib/jquery-2.2.1.min.js"></script>
-    <script src="js/src/localStorageOperation.js"></script>
-    <script src="js/src/fixture.js"></script>
-    <script src="js/src/receipt.js"></script>
+    <script src="javascripts/lib/jquery-2.2.1.min.js"></script>
+    <script src="javascripts/src/localStorageOperation.js"></script>
+    <script src="javascripts/src/fixture.js"></script>
+    <script src="javascripts/src/receipt.js"></script>
 </body>
 </html>

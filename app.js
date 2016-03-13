@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', list);
 app.use('/cart', cart);
-// app.use('/receipt', receipt);
+app.use('/receipt', receipt);
 // app.use('/receiptList', receiptList);
 
 
