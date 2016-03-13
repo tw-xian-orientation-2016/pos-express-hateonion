@@ -20,10 +20,10 @@
               </tr>
               {% for receipt in receiptList %}
               <tr>
-                <td>time</td>
-                <td>{{receipt.total}}元</td>
-                <td><button name="getReceipt" data-timeStamp={{receipt.time}} class="btn btn-info glyphicon glyphicon-gift checkout"></button></td>
-                <td><button name="deleteReceipt" data-timeStamp={{receipt.time}} class="btn btn-warning glyphicon glyphicon-remove delete"></button></td>
+                  <td>{{time}}</td>
+                  <td>{{receipt.total}}元</td>
+                  <td><button name="getReceipt" data-timeStamp={{receipt.time}} class="btn btn-info glyphicon glyphicon-gift checkout"></button></td>
+                  <td><button name="deleteReceipt" data-timeStamp={{receipt.time}} class="btn btn-warning glyphicon glyphicon-remove delete"></button></td>
               </tr>
               {% endfor %}
           </table>

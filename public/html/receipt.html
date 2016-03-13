@@ -33,16 +33,16 @@
             <th>小计</th>
           </tr>
           {% for cartItem in cart %}
-          {% for item in items %}
-          {% if cartItem.id == item.id %}
-          <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.price}}</td>
-            <td>{{cartItem.count}}{{item.unit}}</td>
-            <td>{{item.price * cartItem.count}}元</td>
-          </tr>
-          {% endif %}
-          {% endfor %}
+            {% for item in items %}
+              {% if cartItem.id == item.id %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{cartItem.count}}{{item.unit}}</td>
+                    <td>{{item.price * cartItem.count}}元</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
           {% endfor %}
         </table>
       </div>

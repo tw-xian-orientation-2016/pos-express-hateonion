@@ -23,21 +23,12 @@
                         <th>单价</th>
                         <th>操作</th>
                     </tr>
-                    {% for item in items %}
-                    <tr>
-                      <td>{{item.name}}</td>
-                      <td>{{item.price}}元/{{item.unit}}</td>
-                      <td><button name="addButton" data-toggle="tooltip" title="添加商品" data-itemId={{item.id}} class="btn btn-default glyphicon glyphicon-plus"></button></td>
-                    </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>
     </div>
     <script src="javascripts/lib/jquery-2.2.1.min.js"></script>
     <script src="javascripts/lib/bootstrap.min.js"></script>
-    <script src="javascripts/src/localStorageOperation.js"></script>
-    <script src="javascripts/src/fixture.js"></script>
     <script src="javascripts/src/list.js"></script>
 </body>
 </html>

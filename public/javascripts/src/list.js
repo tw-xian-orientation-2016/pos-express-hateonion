@@ -1,25 +1,27 @@
 $(document).ready(function() {
-  generateListPage();
-  addButtonClick();
-  hoverEffect();
-  cartButtonClick();
-  receiptListButtonClick();
+  init();
 });
 
-function init() {
-  $.getJSON("data/items.json", function(data){
-    setLocalStorage("items", data);
-    setLocalStorage("tempCarts", []);
-    setLocalStorage("carts", []);
-    setLocalStorage("receiptList", []);
-    printDetail();
-    addButtonClick();
-    updateNumber();
-  });
+function init(){
+
+  $.get('/api/getProductInfo', function(data){
+    var items = data.items;
+    printDetail(items);
+  }, 'json');
+
+  $.get('/api/getReceiptList', function(data){
+    var receiptList = data;
+    updateReceiptNumber(receiptList);
+  }, 'json');
+
+  $.get('/api/getCart', function (data) {
+    var cart = data;
+    updateCartNumber(cart);
+  }, 'json');
+
 }
 
-function printDetail() {
-  var items = getLocalStorage("items");
+function printDetail(items) {
   items.forEach(function(item) {
     var htmlContext = "";
     htmlContext += "<tr>";
@@ -28,38 +30,24 @@ function printDetail() {
     htmlContext += "<td>" + "<button name='addButton' data-toggle='tooltip' title='添加商品' " + "data-itemId=" + item.id + " class='btn btn-default glyphicon glyphicon-plus'>" + "</button>" + "</td>";
     htmlContext += "</tr>";
     $("table").append(htmlContext);
-    updateNumber();
   });
 }
-function document(idsd) {
-  var a = 0;
-  var b = c;
 
-
-}
-
-function generateListPage() {
-  if(!localStorage.items){
-    init();
-  } else{
-    printDetail();
-  }
-}
-
-function updateNumber() {
-  var receiptList = getLocalStorage("receiptList");
-  var carts = getLocalStorage("carts");
-  var number= 0;
-  carts.forEach(function(cart) {
-    number += cart.count;
-  });
-  var cartNumber = '<div class="shouNumber">' + number + "</div>";
-  $("[name='cartButton']").html(cartNumber);
+function updateReceiptNumber(receiptList) {
   var receiptNumber = "<div class='shouNumber'>" + receiptList.length + "</div>";
   $("[name='receiptListButton']").html(receiptNumber);
 }
 
-function hasThisItemInCart(id) {
+function updateCartNumber(cart) {
+  var number= 0;
+  cart.forEach(function(cartItem) {
+    number += cartItem.count;
+  });
+  var cartNumber = '<div class="shouNumber">' + number + "</div>";
+  $("[name='cartButton']").html(cartNumber);
+}
+
+function hasThisItemInCart(id, carts) {
   var carts = getLocalStorage('carts');
   var index;
   carts.forEach(function(cart, currentIndex) {

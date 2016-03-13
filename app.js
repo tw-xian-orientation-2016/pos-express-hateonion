@@ -10,6 +10,7 @@ let list = require('./routes/list');
 let cart = require('./routes/cart');
 let receipt = require('./routes/receipt');
 let receiptList = require('./routes/receiptList');
+let api = require('./routes/api');
 
 let app = express();
 
@@ -33,6 +34,7 @@ app.use('/', list);
 app.use('/cart', cart);
 app.use('/receipt', receipt);
 app.use('/receiptList', receiptList);
+app.use('/api', api);
 
 
 // catch 404 and forward to error handler
