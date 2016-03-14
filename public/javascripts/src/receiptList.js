@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 function printReceiptList() {
   getReceiptList(function(receiptList) {
-    console.log(receiptList);
     printDetail(receiptList);
     backButtonClick();
     getReciptButtonClick(receiptList);
@@ -42,6 +41,7 @@ function getReciptButtonClick(receiptList) {
     receiptList.forEach(function(receipt, index) {
       if(receipt.timeStamp === parseInt(timeStamp)) {
         localStorage.setItem('tempCart', receiptList[index].cart);
+        localStorage.setItem('timeStamp', receiptList[index].timeStamp);
       }
     });
     document.location.href = './receipt';

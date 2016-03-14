@@ -9,9 +9,9 @@ $(document).ready(function() {
 function printReceipt() {
   getCart(function (cart){
     getProductInfo(function (items) {
-      printTimeAndOperator();
+      checkOutTime();
       printCarts(cart, items);
-      let total = countTotal(cart, items);
+      var total = countTotal(cart, items);
       backButtonClick();
       $.post('/api/addReceipt', {total: total,cart: JSON.stringify(cart)}, function() {
         clearCart();
@@ -24,9 +24,11 @@ function printReceipt() {
 function printTempReceipt() {
   getProductInfo(function (items) {
     backButtonClick();
-    printTimeAndOperator();
-    let cart = localStorage.getItem('tempCart');
+    var cart = localStorage.getItem('tempCart');
+    var timeStamp = localStorage.getItem('timeStamp');
+    timeStamp = JSON.parse(timeStamp);
     cart = JSON.parse(cart);
+    printTimeAndOperator(timeStamp);
     printCarts(cart, items);
   });
 }
@@ -64,15 +66,17 @@ function countTotal(carts, items) {
 }
 
 
-function getLocalTime() {
+function checkOutTime() {
   var myDate = new Date();
   var time = myDate.toLocaleString();
-  return time;
+  $("#time").text("时间:" + time);
+  $("#operator").text("操作员：老司机");
 }
 
 
-function printTimeAndOperator() {
-  var time = getLocalTime();
+function printTimeAndOperator(timeStamp) {
+  var myDate = new Date(timeStamp);
+  var time = myDate.toLocaleString();
   $("#time").text("时间:" + time);
   $("#operator").text("操作员：老司机");
 }
@@ -96,6 +100,7 @@ function clearCart() {
 
 function backButtonClick() {
   $("[name='back']").click(function() {
+    localStorage.clear();
     document.location.href = '/';
   });
 }
