@@ -54,6 +54,11 @@ router.post('/addReceipt', (req, res) => {
   res.send('success');
 });
 
+router.post('/deleteReceipt', (req, res) => {
+  console.log(req.body.timeStamp);
+  db.deleteReceipt(req.body.timeStamp);
+  res.send('success');
+});
 
 
 

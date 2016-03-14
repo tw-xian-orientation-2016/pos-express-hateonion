@@ -50,15 +50,8 @@ function getReciptButtonClick(receiptList) {
 
 function deleteButtonClick() {
   $("[name='deleteReceipt']").click(function() {
-    var receiptList = getLocalStorage('receiptList');
     var timeStamp = $(this).attr('data-timeStamp');
-
-    receiptList.forEach(function(receipt, index) {
-      if(receipt.time === parseInt(timeStamp)) {
-        receiptList.splice(index, 1);
-      }
-    });
-    setLocalStorage('receiptList', receiptList);
+    $.post('/api/deletReceipt', {timeStamp : timeStamp});
     $(this).parents("tr").remove();
   });
 }

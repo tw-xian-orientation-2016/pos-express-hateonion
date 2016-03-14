@@ -141,6 +141,9 @@ function addReceipt(cart, total) {
   receipt.save();
 }
 
+function deleteReceipt(timeStamp) {
+  receiptListModel.remove({timeStamp : parseInt(timeStamp)});
+}
 
 exports.init  = init;
 exports.getProductInfo = getProductInfo;
@@ -152,3 +155,4 @@ exports.selfAdd = selfAdd;
 exports.cleanCart = cleanCart;
 exports.getReceiptList = getReceiptList;
 exports.addReceipt = addReceipt;
+exports.deleteReceipt = deleteReceipt;
