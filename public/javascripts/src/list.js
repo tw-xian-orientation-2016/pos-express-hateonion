@@ -9,6 +9,7 @@ function init(){
     items = data;
     printDetail(items);
     addButtonClick();
+    receiptListButtonClick();
     hoverEffect();
     cartButtonClick();
   });
@@ -19,10 +20,10 @@ function init(){
   });
 
 
-  // getReceiptList(function(data) {
-    // receiptList = data;
-    // updateReceiptNumber(receiptList);
-  // });
+  getReceiptList(function(data) {
+    receiptList = data;
+    updateReceiptNumber(receiptList);
+  });
 
 
 }
@@ -98,7 +99,7 @@ function hoverEffect() {
 
 function receiptListButtonClick() {
   $("[name='receiptListButton']").click(function() {
-    document.location.href = "receiptList.html";
+    document.location.href = "./receiptList";
   });
 }
 

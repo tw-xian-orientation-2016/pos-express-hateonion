@@ -8,6 +8,7 @@ $(document).ready(function() {
 function printReceipt() {
   getCart(function (cart){
     getProductInfo(function (items) {
+      printTimeAndOperator();
       printCarts(cart, items);
       let total = countTotal(cart, items);
       backButtonClick();
@@ -77,19 +78,8 @@ function printCarts(carts, items) {
   $("#totalMoney").text(sumContext);
 }
 
-function printDetail() {
-  var tempCarts = getLocalStorage("tempCarts");
-
-  if(tempCarts.length === 0){
-    printCarts();
-  } else{
-    printTempCart();
-  }
-}
-
 function generateReceipt() {
 
-  printTimeAndOperator();
   printDetail();
 
 }
