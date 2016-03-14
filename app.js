@@ -5,6 +5,8 @@ let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let swig = require('swig');
+let mongoose = require('mongoose');
 
 let list = require('./routes/list');
 let cart = require('./routes/cart');
@@ -14,9 +16,15 @@ let api = require('./routes/api');
 
 let app = express();
 
+var opts = {
+  server: {
+    socketOptions: { keepAlive: 1 }
+  }
+};
+
+mongoose.connect('localhost/test1', opts);
 
 // view engine setup
-let swig = require('swig');
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', swig.renderFile);
 // app.set('view engine', 'jade');

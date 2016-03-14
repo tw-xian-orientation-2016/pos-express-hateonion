@@ -1,38 +1,28 @@
-function getProductInfo() {
-  $.ajaxSetup({
-    async : false
-  });
-  var productInfo;
+function getProductInfo(callback) {
 
   $.get('/api/getProductInfo', function(data){
-    productInfo = data.items;
+    if(callback){
+      callback(data);
+    }
   }, 'json');
 
-  return productInfo;
 }
 
-function getCart() {
-  $.ajaxSetup({
-    async : false
-  });
-  var cart;
+function getCart(callback) {
 
   $.get('/api/getCart', function(data){
-    cart = data;
+    if(callback) {
+      callback(data);
+    }
   }, 'json');
-
-  return cart;
 }
 
-function getReceiptList() {
-  $.ajaxSetup({
-    async : false
-  });
-  var receiptList;
+function getReceiptList(callback) {
 
   $.get('/api/getReceiptList', function(data){
-    receiptList = data;
+    if(callback) {
+      callback(data);
+    }
   }, 'json');
 
-  return receiptList;
 }

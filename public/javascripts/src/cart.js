@@ -8,8 +8,8 @@ $(document).ready(function() {
 
 function generateCart() {
   $.get('/api/getProductInfo', function(data){
-    var items = data;
-    $.get('/api/getProductInfo', function(data){
+    var items = data.items;
+    $.get('/api/getCart', function(data){
       var cart = data;
 
       cart.forEach(function(cartitem) {
@@ -78,10 +78,3 @@ function backButtonClick() {
   });
 }
 
-$(document).ready(function() {
-  generateCart();
-  deleteButtonClick();
-  updateNumber();
-  checkOutClick();
-  backButtonClick();
-});
