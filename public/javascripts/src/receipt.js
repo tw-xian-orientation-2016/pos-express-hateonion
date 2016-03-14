@@ -1,8 +1,9 @@
 $(document).ready(function() {
-  printReceipt();
-  // generateReceipt();
-  // clearCart();
-  // backButtonClick();
+  if(localStorage.length !== 0) {
+    printTempReceipt();
+  } else{
+    printReceipt();
+  }
 });
 
 function printReceipt() {
@@ -19,6 +20,16 @@ function printReceipt() {
   });
 }
 
+
+function printTempReceipt() {
+  getProductInfo(function (items) {
+    backButtonClick();
+    printTimeAndOperator();
+    let cart = localStorage.getItem('tempCart');
+    cart = JSON.parse(cart);
+    printCarts(cart, items);
+  });
+}
 
 function generateTable(carts, items) {
 
@@ -76,12 +87,6 @@ function printCarts(carts, items) {
   sumContext += total;
   sumContext += "元";
   $("#totalMoney").text(sumContext);
-}
-
-function generateReceipt() {
-
-  printDetail();
-
 }
 
 
