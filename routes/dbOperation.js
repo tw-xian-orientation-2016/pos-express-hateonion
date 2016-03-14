@@ -84,12 +84,19 @@ function callbackPrint(err, docs) {
   }
 }
 
-
-
-function addItem(id) {
+function addNewItem(id) {
   let cart = new cartModel({id:id, count: 1});
   cart.save((err, docs) => {
     callbackPrint(err, docs);
+  });
+}
+
+function selfAdd(id) {
+  cartModel.findOne({id : id}, (err, data) => {
+    data.count++;
+    data.save((err, data) => {
+      callbackPrint(err, data);
+    });
   });
 }
 
@@ -114,9 +121,11 @@ function deleteCart(id) {
   });
 }
 
+
 exports.init  = init;
 exports.getProductInfo = getProductInfo;
-exports.addItem = addItem;
+exports.addNewItem = addNewItem;
 exports.getCart = getCart;
 exports.updateCart = updateCart;
 exports.deleteCart = deleteCart;
+exports.selfAdd = selfAdd;

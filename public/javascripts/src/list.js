@@ -8,6 +8,9 @@ function init(){
   getProductInfo(function(data) {
     items = data;
     printDetail(items);
+    addButtonClick();
+    hoverEffect();
+    cartButtonClick();
   });
 
   getCart(function(data) {
@@ -15,10 +18,11 @@ function init(){
     updateCartNumber(cart);
   });
 
-  getReceiptList(function(data) {
-    receiptList = data;
-    updateReceiptNumber(receiptList);
-  });
+
+  // getReceiptList(function(data) {
+    // receiptList = data;
+    // updateReceiptNumber(receiptList);
+  // });
 
 
 }
@@ -43,41 +47,48 @@ function updateReceiptNumber(receiptList) {
 function updateCartNumber(cart) {
   var number= 0;
   cart.forEach(function(cartItem) {
-    number += cartItem.count;
+    number += parseInt(cartItem.count);
   });
   var cartNumber = '<div class="shouNumber">' + number + "</div>";
-  $("[name='cartButton']").html(cartNumber);
+  $("[name='cartButton']").append(cartNumber);
 }
 
-function hasThisItemInCart(id, carts) {
-  var carts = getLocalStorage('carts');
-  var index;
-  carts.forEach(function(cart, currentIndex) {
-    if(cart.id === id) {
-      index = currentIndex;
-    }
-  });
-  return index;
+function postId(id, data, index) {
+  if(index !== undefined) {
+    $.post('/api/selfAdd',{id : id}, function() {
+      getCart(function (data) {
+        updateCartNumber(data);
+      });
+    });
+  } else{
+    $.post('/api/addItem', {id : id}, function(){
+      getCart(function(data) {
+        updateCartNumber(data);
+      });
+    });
+  }
 }
 
 function addButtonClick() {
   $("[name='addButton']").click(function() {
-    var id = $(this).attr('data-itemId');
-    var carts = getLocalStorage('carts');
-    if(hasThisItemInCart(id)!== undefined) {
-      var index = hasThisItemInCart(id);
-      carts[index].count++;
-    } else{
-      carts.push({"id" : id, "count" : 1});
-    }
-    setLocalStorage("carts", carts);
-    updateNumber();
+    var id = $(this).data('itemid');
+    getCart(function(data) {
+      var index;
+      carts = data;
+      carts.forEach(function(cart, currentIndex) {
+        if(cart.id === id) {
+          index = currentIndex;
+        }
+      });
+      postId(id, data, index);
+    });
   });
 }
 
+
 function cartButtonClick() {
   $("[name='cartButton']").click(function() {
-    document.location.href = "cart.html";
+    document.location.href = "./cart";
   });
 }
 

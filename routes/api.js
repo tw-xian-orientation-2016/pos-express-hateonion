@@ -26,9 +26,13 @@ router.get('/dbinit', (req, res) => {
 });
 
 router.post('/addItem', (req, res) => {
-  db.addItem(req.body.id, (data) => {
-    res.json(data);
-  });
+  db.addNewItem(req.body.id);
+  res.send('success');
+});
+
+router.post('/selfAdd', (req, res) => {
+  db.selfAdd(req.body.id);
+  res.send('success');
 });
 
 
