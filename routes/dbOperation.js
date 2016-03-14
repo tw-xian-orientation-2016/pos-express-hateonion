@@ -24,18 +24,14 @@ let productSchema = new mongoose.Schema(
         price : String
       }
     ]
-  }
-);
+  });
 let productModel = mongoose.model('Product', productSchema);
 
-let cartSchema = new mongoose.Schema
-(
-  {
-    count : String,
-    id : String
-  }
-);
+let cartSchema = new mongoose.Schema({ count : String, id : String });
 let cartModel = mongoose.model('Cart', cartSchema);
+
+let receiptSchema = new mongoose.Schema({total: String, timeStamp:Number, cart: []});
+let receiptListModel = mongoose.model('ReceiptList', receiptSchema);
 
 function init() {
   let productInfo = new productModel
@@ -65,10 +61,9 @@ function init() {
   );
   productInfo.save((err, data) => {
     console.log('success');
-    console.log(data);
   });
-  console.log('finish');
 }
+
 
 function getProductInfo(callback) {
   productModel.find((err, data) => {
@@ -121,6 +116,31 @@ function deleteCart(id) {
   });
 }
 
+function cleanCart() {
+  cartModel.remove({}, (err, data) => {
+    callbackPrint(err, data);
+  });
+}
+
+function getReceiptList(callback) {
+  receiptListModel.find((err, receiptList) => {
+    callback(receiptList);
+  });
+}
+
+function getTimeStamp() {
+  let myDate = new Date();
+  let timeStamp = myDate.getTime();
+  return timeStamp;
+}
+
+
+function addReceipt(cart, total) {
+  let timeStamp = getTimeStamp();
+  let receipt = new receiptListModel({total: total, timeStamp: timeStamp, cart: cart});
+  receipt.save();
+}
+
 
 exports.init  = init;
 exports.getProductInfo = getProductInfo;
@@ -129,3 +149,6 @@ exports.getCart = getCart;
 exports.updateCart = updateCart;
 exports.deleteCart = deleteCart;
 exports.selfAdd = selfAdd;
+exports.cleanCart = cleanCart;
+exports.getReceiptList = getReceiptList;
+exports.addReceipt = addReceipt;

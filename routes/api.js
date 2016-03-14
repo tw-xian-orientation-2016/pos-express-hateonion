@@ -12,13 +12,14 @@ router.get('/getProductInfo', (req, res) => {
 
 router.get('/getCart', (req, res) => {
   db.getCart((data) => {
-    console.log(data);
     res.json(data);
   });
 });
 
 router.get('/getReceiptList', (req, res) => {
-  res.send(JSON.stringify(receiptList));
+  db.getReceiptList((data) => {
+    res.json(data);
+  });
 });
 
 router.get('/dbinit', (req, res) => {
@@ -43,6 +44,16 @@ router.post('/updateCart', (req, res) => {
 router.post('/deleteCart', (req, res) => {
   db.deleteCart(req.body.id);
 });
+
+router.get('/cleanCart', (req, res) => {
+  db.cleanCart();
+});
+
+router.post('/addReceipt', (req, res) => {
+  db.addReceipt(req.body.cart, req.body.total);
+  res.send('success');
+});
+
 
 
 module.exports = router;
