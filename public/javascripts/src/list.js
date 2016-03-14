@@ -50,7 +50,7 @@ function updateCartNumber(cart) {
     number += parseInt(cartItem.count);
   });
   var cartNumber = '<div class="shouNumber">' + number + "</div>";
-  $("[name='cartButton']").append(cartNumber);
+  $("[name='cartButton']").html(cartNumber);
 }
 
 function postId(id, data, index) {

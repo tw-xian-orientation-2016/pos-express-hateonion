@@ -32,18 +32,6 @@
             <th>数量</th>
             <th>小计</th>
           </tr>
-          {% for cartItem in cart %}
-            {% for item in items %}
-              {% if cartItem.id == item.id %}
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{cartItem.count}}{{item.unit}}</td>
-                    <td>{{item.price * cartItem.count}}元</td>
-                </tr>
-              {% endif %}
-            {% endfor %}
-          {% endfor %}
         </table>
       </div>
     </div>
@@ -59,7 +47,7 @@
     </div>
     <div class="row">
       <div class="col-xs-3 col-xs-offset-9">
-        <button id="back" name="back" class="btn btn-default pull-right">返回</button>
+        <button id="back" name="back" class="btn btn-default pull-right"><a href="/receipt"></a></button>
       </div>
     </div>
   </div>

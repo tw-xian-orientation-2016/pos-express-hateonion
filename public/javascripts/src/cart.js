@@ -7,6 +7,9 @@ function generateCart() {
     getCart(function (cart){
       printDetail(cart, productInfo);
       deleteButtonClick();
+      updateNumber();
+      checkOutClick();
+      backButtonClick();
     });
   });
 }
@@ -42,31 +45,24 @@ function deleteButtonClick() {
 
 function updateNumber() {
   $("[name='numberInput']").change(function() {
-    var carts = getLocalStorage('carts');
     var id = $(this).attr("data-itemId");
     var number = $(this).val();
     var price = parseInt($(this).parent().prevAll('#price').text());
-
-    carts.forEach(function(cart, index) {
-      if(id === cart.id) {
-        carts[index].count = number;
-      }
-    });
+    $.post('/api/updateCart',{id: id, count: number});
     $(this).parent().prevAll("#count").text(number);
     $(this).parent().prevAll("#subtotal").text(number * price + "元");
-    setLocalStorage("carts", carts);
   });
 }
 
 function checkOutClick() {
   $("[name='checkout']").click(function() {
-    document.location.href = 'receipt.html';
+    document.location.href = '/receipt';
   });
 }
 
 function backButtonClick() {
   $("[name='back']").click(function() {
-    document.location.href = 'list.html';
+    document.location.href = '/';
   });
 }
 
