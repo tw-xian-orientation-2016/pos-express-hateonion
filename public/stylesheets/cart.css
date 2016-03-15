@@ -1,0 +1,13 @@
+#cart {
+  font-size: 20px;
+}
+
+#cartTitle {
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#cartButton button{
+  font-size: 20px;
+  width: 100px;
+}

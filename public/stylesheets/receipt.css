@@ -1,0 +1,43 @@
+@media print{
+  #receipt {
+    font-size: 20px;
+  }
+
+  #logo {
+    margin-bottom: 20px;
+  }
+  #time {
+    font-size: 10px;
+  }
+
+  #operator {
+    font-size: 15px;
+  }
+
+  #back {
+    display: none;
+  }
+}
+
+#receipt {
+  font-size: 20px;
+}
+
+#logo {
+  margin-bottom: 20px;
+}
+#time {
+  font-size: 20px;
+}
+
+#operator {
+  font-size: 20px;
+}
+
+#back {
+  font-size: 20px;
+}
+
+#totalMoney {
+  font-size: 20px;
+}
