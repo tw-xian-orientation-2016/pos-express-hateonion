@@ -56,13 +56,13 @@ function updateCartNumber(cart) {
 
 function postId(id, data, index) {
   if(index !== undefined) {
-    $.post('/api/selfAdd',{id : id}, function() {
+    selfAddcartItem(id, function(data){
       getCart(function (data) {
         updateCartNumber(data);
       });
     });
   } else{
-    $.post('/api/addItem', {id : id}, function(){
+    createCartItem(id, function(data) {
       getCart(function(data) {
         updateCartNumber(data);
       });

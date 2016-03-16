@@ -37,7 +37,7 @@ function printDetail(cart, items) {
 function deleteButtonClick() {
   $("[name='deleteButton']").click(function() {
     var id = $(this).attr("data-itemId");
-    $.post('/api/deleteCart',{id : id});
+    deleteCartItem(id);
     $(this).parents("tr").remove();
     });
   }
@@ -48,7 +48,7 @@ function updateNumber() {
     var id = $(this).attr("data-itemId");
     var number = $(this).val();
     var price = parseInt($(this).parent().prevAll('#price').text());
-    $.post('/api/updateCart',{id: id, count: number});
+    updateCartItem(id, number);
     $(this).parent().prevAll("#count").text(number);
     $(this).parent().prevAll("#subtotal").text(number * price + "元");
   });

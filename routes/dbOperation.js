@@ -25,6 +25,7 @@ let productSchema = new mongoose.Schema(
       }
     ]
   });
+
 let productModel = mongoose.model('Product', productSchema);
 
 let cartSchema = new mongoose.Schema({ count : String, id : String });
@@ -86,14 +87,26 @@ function addNewItem(id) {
   });
 }
 
-function selfAdd(id) {
-  cartModel.findOne({id : id}, (err, data) => {
-    data.count++;
-    data.save((err, data) => {
-      callbackPrint(err, data);
+function updateCart(id, count) {
+  if(arguments.length === 1) {
+
+    cartModel.findOne({id : id}, (err, data) => {
+      data.count++;
+      data.save((err, data) => {
+        callbackPrint(err, data);
+      });
     });
-  });
+
+  }else{
+    cartModel.findOne({ id: id }, (err, data) => {
+      data.count = count;
+      data.save((err, docs) => {
+        callbackPrint(err, docs);
+      });
+    });
+  }
 }
+
 
 function getCart(callback) {
   cartModel.find((err, data) => {
@@ -101,14 +114,6 @@ function getCart(callback) {
   });
 }
 
-function updateCart(id, count) {
-  cartModel.findOne({ id: id }, (err, data) => {
-    data.count = count;
-    data.save((err, docs) => {
-      callbackPrint(err, docs);
-    });
-  });
-}
 
 function deleteCart(id) {
   cartModel.remove({id : id}, (err, data) => {
@@ -142,7 +147,9 @@ function addReceipt(cart, total) {
 }
 
 function deleteReceipt(timeStamp) {
-  receiptListModel.remove({timeStamp : parseInt(timeStamp)});
+  receiptListModel.remove({timeStamp : timeStamp}, (err, docs) =>{
+    callbackPrint(err, docs);
+  });
 }
 
 exports.init  = init;
@@ -151,7 +158,6 @@ exports.addNewItem = addNewItem;
 exports.getCart = getCart;
 exports.updateCart = updateCart;
 exports.deleteCart = deleteCart;
-exports.selfAdd = selfAdd;
 exports.cleanCart = cleanCart;
 exports.getReceiptList = getReceiptList;
 exports.addReceipt = addReceipt;
