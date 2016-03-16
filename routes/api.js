@@ -28,7 +28,11 @@ router.post('/cartItems', (req, res) => {
 });
 
 router.put('/cartItems', (req, res) => {
+  if(req.body.count !== undefined){
+    db.updateCart(req.body.id, req.body.count);
+  } else{
   db.updateCart(req.body.id);
+  }
   res.send('success');
 });
 

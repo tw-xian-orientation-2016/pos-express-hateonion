@@ -56,16 +56,13 @@ function updateCartNumber(cart) {
 
 function postId(id, data, index) {
   if(index !== undefined) {
-    $.ajax({url: '/api/cartItems',
-           data : {id : id},
-           method: 'PUT'})
-           .done(function() {
-             getCart(function (data) {
-               updateCartNumber(data);
-             });
-           });
+    selfAddcartItem(id, function(data){
+      getCart(function (data) {
+        updateCartNumber(data);
+      });
+    });
   } else{
-    $.post('/api/cartItems', {id : id}, function(){
+    createCartItem(id, function(data) {
       getCart(function(data) {
         updateCartNumber(data);
       });

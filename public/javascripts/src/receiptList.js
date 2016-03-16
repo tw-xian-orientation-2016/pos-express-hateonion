@@ -42,6 +42,7 @@ function getReciptButtonClick(receiptList) {
       if(receipt.timeStamp === parseInt(timeStamp)) {
         localStorage.setItem('tempCart', receiptList[index].cart);
         localStorage.setItem('timeStamp', receiptList[index].timeStamp);
+
       }
     });
     document.location.href = './receipt';
@@ -51,9 +52,7 @@ function getReciptButtonClick(receiptList) {
 function deleteButtonClick() {
   $("[name='deleteReceipt']").click(function() {
     var timeStamp = $(this).attr('data-timeStamp');
-    $.ajax({url: '/api/receipts',
-           data : {timeStamp: timeStamp},
-           method: 'DELETE'});
+    deleteReceipt(timeStamp);
     $(this).parents("tr").remove();
   });
 }
