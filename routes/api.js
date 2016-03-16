@@ -4,29 +4,25 @@ let db = require('./dbOperation.js');
 
 let router = express.Router();
 
-router.get('/getProductInfo', (req, res) => {
+router.get('/productsInfo', (req, res) => {
   db.getProductInfo((data) => {
     res.send(JSON.stringify(data[0].items));
   });
 });
 
-router.get('/getCart', (req, res) => {
+router.get('/carts', (req, res) => {
   db.getCart((data) => {
     res.json(data);
   });
 });
 
-router.get('/getReceiptList', (req, res) => {
+router.get('/receiptsList', (req, res) => {
   db.getReceiptList((data) => {
     res.json(data);
   });
 });
 
-router.get('/dbinit', (req, res) => {
-  db.init();
-});
-
-router.post('/addItem', (req, res) => {
+router.post('/items', (req, res) => {
   db.addNewItem(req.body.id);
   res.send('success');
 });

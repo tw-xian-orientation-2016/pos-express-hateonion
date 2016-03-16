@@ -25,6 +25,7 @@ let productSchema = new mongoose.Schema(
       }
     ]
   });
+
 let productModel = mongoose.model('Product', productSchema);
 
 let cartSchema = new mongoose.Schema({ count : String, id : String });

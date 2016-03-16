@@ -62,7 +62,7 @@ function postId(id, data, index) {
       });
     });
   } else{
-    $.post('/api/addItem', {id : id}, function(){
+    $.post('/api/items', {id : id}, function(){
       getCart(function(data) {
         updateCartNumber(data);
       });

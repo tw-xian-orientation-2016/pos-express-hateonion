@@ -1,4 +1,5 @@
 "use strict";
+
 let express = require('express');
 let path = require('path');
 let favicon = require('serve-favicon');
@@ -22,7 +23,7 @@ var opts = {
   }
 };
 
-mongoose.connect('localhost/test1', opts);
+mongoose.connect('mongodb://127.0.0.1:12306/test1');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
