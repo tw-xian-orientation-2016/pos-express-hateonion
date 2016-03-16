@@ -13,7 +13,7 @@ function printReceipt() {
       printCarts(cart, items);
       var total = countTotal(cart, items);
       backButtonClick();
-      $.post('/api/addReceipt', {total: total,cart: JSON.stringify(cart)}, function() {
+      $.post('/api/receipts', {total: total,cart: JSON.stringify(cart)}, function() {
         clearCart();
       });
     });
@@ -95,7 +95,8 @@ function printCarts(carts, items) {
 
 
 function clearCart() {
-  $.get('/api/cleanCart');
+  $.ajax({url: '/api/cart',
+         method: 'DELETE'});
 }
 
 function backButtonClick() {

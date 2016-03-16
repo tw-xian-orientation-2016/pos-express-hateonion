@@ -147,7 +147,9 @@ function addReceipt(cart, total) {
 }
 
 function deleteReceipt(timeStamp) {
-  receiptListModel.remove({timeStamp : parseInt(timeStamp)});
+  receiptListModel.remove({timeStamp : timeStamp}, (err, docs) =>{
+    callbackPrint(err, docs);
+  });
 }
 
 exports.init  = init;

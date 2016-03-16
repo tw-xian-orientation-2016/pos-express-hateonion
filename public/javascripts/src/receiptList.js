@@ -51,7 +51,9 @@ function getReciptButtonClick(receiptList) {
 function deleteButtonClick() {
   $("[name='deleteReceipt']").click(function() {
     var timeStamp = $(this).attr('data-timeStamp');
-    $.post('/api/deletReceipt', {timeStamp : timeStamp});
+    $.ajax({url: '/api/receipts',
+           data : {timeStamp: timeStamp},
+           method: 'DELETE'});
     $(this).parents("tr").remove();
   });
 }

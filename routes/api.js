@@ -33,24 +33,21 @@ router.put('/cartItems', (req, res) => {
 });
 
 
-router.put('/cartItemss', (req, res) => {
-  db.updateCart(req.body.id, req.body.count);
-});
 
-router.delete('/cartItems/', (req, res) => {
+router.delete('/cartItems', (req, res) => {
   db.deleteCart(req.body.id);
 });
 
-router.get('/cleanCart', (req, res) => {
+router.delete('/cart', (req, res) => {
   db.cleanCart();
 });
 
-router.post('/addReceipt', (req, res) => {
+router.post('/receipts', (req, res) => {
   db.addReceipt(req.body.cart, req.body.total);
   res.send('success');
 });
 
-router.post('/deleteReceipt', (req, res) => {
+router.delete('/receipts', (req, res) => {
   console.log(req.body.timeStamp);
   db.deleteReceipt(req.body.timeStamp);
   res.send('success');
