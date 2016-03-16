@@ -10,34 +10,34 @@ router.get('/productsInfo', (req, res) => {
   });
 });
 
-router.get('/carts', (req, res) => {
+router.get('/cartItems', (req, res) => {
   db.getCart((data) => {
     res.json(data);
   });
 });
 
-router.get('/receiptsList', (req, res) => {
+router.get('/receipts', (req, res) => {
   db.getReceiptList((data) => {
     res.json(data);
   });
 });
 
-router.post('/items', (req, res) => {
+router.post('/cartItems', (req, res) => {
   db.addNewItem(req.body.id);
   res.send('success');
 });
 
-router.post('/selfAdd', (req, res) => {
-  db.selfAdd(req.body.id);
+router.put('/cartItems', (req, res) => {
+  db.updateCart(req.body.id);
   res.send('success');
 });
 
 
-router.post('/updateCart', (req, res) => {
+router.put('/cartItemss', (req, res) => {
   db.updateCart(req.body.id, req.body.count);
 });
 
-router.post('/deleteCart', (req, res) => {
+router.delete('/cartItems/', (req, res) => {
   db.deleteCart(req.body.id);
 });
 

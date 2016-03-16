@@ -10,7 +10,7 @@ function getProductInfo(callback) {
 
 function getCart(callback) {
 
-  $.get('/api/carts', function(data){
+  $.get('/api/cartItems', function(data){
     if(callback) {
       callback(data);
     }
@@ -19,7 +19,7 @@ function getCart(callback) {
 
 function getReceiptList(callback) {
 
-  $.get('/api/receiptsList', function(data){
+  $.get('/api/receipts', function(data){
     if(callback) {
       callback(data);
     }
